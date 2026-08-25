@@ -13,19 +13,16 @@ echo %SOURCE%
 echo Destination:
 echo %DESTINATION%
 
-if exist "%DESTINATION%" (
-    echo Removing old deployment...
-    rmdir /S /Q "%DESTINATION%"
+if not exist "%DESTINATION%" (
+    mkdir "%DESTINATION%"
 )
-
-mkdir "%DESTINATION%"
 
 echo Copying latest code...
 
 xcopy "%SOURCE%\*" "%DESTINATION%\" /E /I /Y /EXCLUDE:%SOURCE%\deploy-exclude.txt
 
 echo ==========================================
-echo       DEPLOYMENT COMPLETED
+echo       HTML DEPLOYMENT COMPLETED
 echo ==========================================
 
 exit /b 0
